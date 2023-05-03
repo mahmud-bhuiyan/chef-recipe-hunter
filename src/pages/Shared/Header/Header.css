@@ -1,0 +1,25 @@
+.banner {
+  background-image: url("https://i.ibb.co/LCHqwXs/cooking-banner-g172a7fbde-1920.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+}
+
+.banner h3 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.banner p {
+  font-size: 1.5rem;
+}
+.highlight {
+  color: coral;
+}
