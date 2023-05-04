@@ -3,6 +3,7 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   getAuth,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
@@ -10,11 +11,39 @@ import app from "../../firebase/firebase.config";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
 import { Button, Container } from "react-bootstrap";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 function Login() {
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [passwordShown, setPasswordShown] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordShown(!passwordShown);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        event.target.reset();
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        setErrorMessage(errorMessage);
+      });
+  };
 
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleProvider)
@@ -44,22 +73,12 @@ function Login() {
       });
   };
 
-  const [passwordShown, setPasswordShown] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setPasswordShown(!passwordShown);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
   return (
     <>
       <Container className="login-container">
         <div className="row justify-content-center">
           <div className="col-md-6 text-center my-5">
-            <h2 className="heading-section">Login</h2>
+            <h2 className="heading-section mt-5">Login</h2>
             <Button onClick={handleSignOut} variant="primary">
               Logout
             </Button>
@@ -68,13 +87,13 @@ function Login() {
         <div className="row justify-content-center">
           <div className="col-md-6 col-lg-4">
             <div className="login-wrap p-0">
-              <h3 className="mb-4 text-center">Have an account?</h3>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <input
                     type="email"
                     className="form-control"
                     placeholder="Email"
+                    name="email"
                     required
                   />
                 </div>
@@ -85,6 +104,7 @@ function Login() {
                       type={passwordShown ? "text" : "password"}
                       className="form-control flex-grow-1"
                       placeholder="Password"
+                      name="password"
                       required
                     />
                     <span
@@ -102,23 +122,41 @@ function Login() {
                     type="submit"
                     className="form-control btn btn-primary submit px-3"
                   >
-                    Sign In
+                    Login
                   </button>
                 </div>
+
+                <p className="text-center my-3 text-white fw-bold">OR</p>
+
+                <div className="d-flex gap-3">
+                  <div className="form-group">
+                    <button
+                      type="button"
+                      className="btn btn-danger btn-lg btn-block"
+                      onClick={handleGoogleSignIn}
+                    >
+                      <FaGoogle /> <small>Continue with Google</small>
+                    </button>
+                  </div>
+
+                  <div className="form-group">
+                    <button
+                      type="button"
+                      className="btn btn-dark btn-lg btn-block"
+                      onClick={handleGithubSignIn}
+                    >
+                      <FaGithub /> <small>Continue with Github</small>
+                    </button>
+                  </div>
+                </div>
               </form>
-              <p className="w-100 text-center mt-3">
-                &mdash; Or Sign In With &mdash;
+              <p className="text-danger">{errorMessage}</p>
+              <p className="text-center text-white">
+                Don't have an account?{" "}
+                <Link className="text-decoration-none fw-bold" to="/register">
+                  Sign up
+                </Link>
               </p>
-              <div className="social d-flex gap-3 justify-content-center">
-                <Button onClick={handleGoogleSignIn}>
-                  <FaGoogle></FaGoogle>
-                  <span className="ion-logo-facebook mr-2"></span> Google
-                </Button>
-                <Button onClick={handleGithubSignIn}>
-                  <FaGithub></FaGithub>
-                  <span className="ion-logo-twitter mr-2"></span> Github
-                </Button>
-              </div>
             </div>
           </div>
         </div>

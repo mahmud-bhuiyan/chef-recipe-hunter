@@ -23,25 +23,27 @@ function Header() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="ms-auto">
               <Link className={`links ${isActiveRoute("/")}`} to="/">
                 Home
               </Link>
               <Link className={`links ${isActiveRoute("/blog")}`} to="/blog">
                 Blog
               </Link>
+              <Link className={`links ${isActiveRoute("/login")}`} to="/login">
+                Login
+              </Link>
+              <Link
+                className={`links ${isActiveRoute("/register")}`}
+                to="/register"
+              >
+                Register
+              </Link>
             </Nav>
             <FaUserCircle
               className="me-2"
               style={{ fontSize: "2rem" }}
             ></FaUserCircle>
-
-            <Link to="/login">
-              <Button variant="primary">Login</Button>
-            </Link>
-            {/* <Button onClick={handleSignOut} variant="primary">
-              Logout
-            </Button> */}
           </Navbar.Collapse>
         </div>
       </Navbar>
