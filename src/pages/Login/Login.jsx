@@ -39,8 +39,12 @@ function Login() {
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        const errorMessage =
+          errorCode === "auth/wrong-password"
+            ? "Incorrect password"
+            : errorCode === "auth/user-not-found"
+            ? "No user found with this email"
+            : error.message;
         setErrorMessage(errorMessage);
       });
   };
@@ -150,13 +154,17 @@ function Login() {
                   </div>
                 </div>
               </form>
-              <p className="text-danger">{errorMessage}</p>
-              <p className="text-center text-white">
+
+              <p className="text-center text-white mt-3">
                 Don't have an account?{" "}
-                <Link className="text-decoration-none fw-bold" to="/register">
+                <Link
+                  className="text-decoration-none fw-bold text-white"
+                  to="/register"
+                >
                   Sign up
                 </Link>
               </p>
+              <p className="text-center text-white">{errorMessage}</p>
             </div>
           </div>
         </div>
