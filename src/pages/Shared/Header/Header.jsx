@@ -1,9 +1,13 @@
 import React from "react";
 import { Nav, Navbar, Button, Image } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   return (
     <>
       <Navbar bg="light" expand="md">
@@ -25,14 +29,17 @@ function Header() {
           </Navbar.Collapse>
         </div>
       </Navbar>
-      <div className="banner">
-        <h3 className="text-dark">
-          Learn the <span className="highlight">Art</span> of Cooking Here
-        </h3>
-        <p className="text-dark">
-          Discover the joy of cooking with our recipes and tutorials
-        </p>
-      </div>
+
+      {isHomePage && (
+        <div className="banner">
+          <h3 className="text-dark">
+            Learn the <span className="highlight">Art</span> of Cooking Here
+          </h3>
+          <p className="text-dark">
+            Discover the joy of cooking with our recipes and tutorials
+          </p>
+        </div>
+      )}
     </>
   );
 }
