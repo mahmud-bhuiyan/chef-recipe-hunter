@@ -30,6 +30,9 @@ function Header() {
               <Link className={`links ${isActiveRoute("/blog")}`} to="/blog">
                 Blog
               </Link>
+              <Link className={`links ${isActiveRoute("/about")}`} to="/about">
+                About Us
+              </Link>
               <Link className={`links ${isActiveRoute("/login")}`} to="/login">
                 Login
               </Link>
