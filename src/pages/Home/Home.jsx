@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-
 import ChefsCard from "../ChefsCard/ChefsCard";
+import ContactUS from "../ContactUS/ContactUS";
 
 function Home() {
   const [chefsData, setChefsData] = useState([]);
@@ -13,14 +13,17 @@ function Home() {
   }, []);
 
   return (
-    <div className="container">
-      <h1 className="text-center my-4">Italian Chefs</h1>
-      <div className="row">
-        {chefsData.map((chef) => (
-          <ChefsCard key={chef.id} chef={chef}></ChefsCard>
-        ))}
+    <>
+      <div className="my-5">
+        <h1 className="text-center my-5">Italian Chefs</h1>
+        <div className="row">
+          {chefsData.map((chef) => (
+            <ChefsCard key={chef.id} chef={chef}></ChefsCard>
+          ))}
+        </div>
       </div>
-    </div>
+      <ContactUS></ContactUS>
+    </>
   );
 }
 

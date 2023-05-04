@@ -1,0 +1,17 @@
+.contact-section {
+  padding: 50px 0;
+}
+
+.contact-container {
+  background-image: url("https://i.ibb.co/120g4Jk/contact-us.png");
+  background-size: cover;
+  background-position: right;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    background-image: none;
+    background-size: auto;
+  }
+}

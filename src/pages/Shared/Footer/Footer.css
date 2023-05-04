@@ -1,11 +1,11 @@
-h4 {
+.section-header {
   position: relative;
   display: inline-block;
   padding-bottom: 0.25em;
   margin-bottom: 1.5em;
 }
 
-h4::after {
+.section-header::after {
   content: "";
   position: absolute;
   bottom: 0;
