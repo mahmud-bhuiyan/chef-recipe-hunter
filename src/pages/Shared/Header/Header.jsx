@@ -6,7 +6,7 @@ import "./Header.css";
 function Header() {
   return (
     <>
-      <Navbar bg="light" expand="md" fixed="top">
+      <Navbar bg="light" expand="md">
         <div className="container">
           <Navbar.Brand className="fw-bold" to="/">
             Food Cravings
