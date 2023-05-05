@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import ChefsCard from "../ChefsCard/ChefsCard";
 import ContactUS from "../ContactUS/ContactUS";
+import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 
 function Home() {
   const [chefsData, setChefsData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:7000/chefs")
+    fetch("https://food-cravings-server-mahmud-bhuiyan.vercel.app/chefs")
       .then((res) => res.json())
       .then((data) => setChefsData(data))
       .catch((error) => console.log(error));
@@ -23,6 +24,7 @@ function Home() {
         </div>
       </div>
       <ContactUS></ContactUS>
+      <FeaturedProducts></FeaturedProducts>
     </>
   );
 }
