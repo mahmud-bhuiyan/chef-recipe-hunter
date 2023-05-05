@@ -12,12 +12,12 @@ const ChefsCard = ({ chef }) => {
           <Card.Title>{chef.name}</Card.Title>
           <Card.Text>
             {chef.experience} years of experience <br />
-            {chef.recipes} recipes
+            {chef.total_recipes} recipes
             <span className="ms-3">
               <FaHeart /> {chef.likes}
             </span>
           </Card.Text>
-          <Button variant="primary" as={Link} to={`/recipes/${chef.id}`}>
+          <Button variant="primary" as={Link} to={`/chef/${chef.id}/recipes`}>
             View Recipes
           </Button>
         </Card.Body>
