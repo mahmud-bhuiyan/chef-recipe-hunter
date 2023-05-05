@@ -2,12 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
+import LazyLoad from "react-lazy-load";
 
 const ChefsCard = ({ chef }) => {
   return (
     <div className="col-md-4 mb-4">
       <Card>
-        <Card.Img variant="top" src={chef.image} />
+        <LazyLoad>
+          <Card.Img variant="top" src={chef.image} />
+        </LazyLoad>
         <Card.Body>
           <Card.Title>{chef.name}</Card.Title>
           <Card.Text>

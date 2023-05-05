@@ -3,6 +3,7 @@ import { Nav, Navbar, Button, Image } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
+import LazyLoad from "react-lazy-load";
 
 function Header() {
   const location = useLocation();
@@ -52,14 +53,16 @@ function Header() {
       </Navbar>
 
       {isHomePage && (
-        <div className="banner">
-          <h3 className="text-dark">
-            Learn the <span className="highlight">Art</span> of Cooking Here
-          </h3>
-          <p className="text-dark">
-            Discover the joy of cooking with our recipes and tutorials
-          </p>
-        </div>
+        <LazyLoad>
+          <div className="banner">
+            <h3 className="text-dark">
+              Learn the <span className="highlight">Art</span> of Cooking Here
+            </h3>
+            <p className="text-dark">
+              Discover the joy of cooking with our recipes and tutorials
+            </p>
+          </div>
+        </LazyLoad>
       )}
     </>
   );

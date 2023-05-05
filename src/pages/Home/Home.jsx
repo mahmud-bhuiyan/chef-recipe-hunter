@@ -23,8 +23,8 @@ function Home() {
           ))}
         </div>
       </div>
-      <ContactUS></ContactUS>
       <FeaturedProducts></FeaturedProducts>
+      <ContactUS></ContactUS>
     </>
   );
 }

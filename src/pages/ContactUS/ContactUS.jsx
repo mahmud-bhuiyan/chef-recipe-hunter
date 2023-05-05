@@ -40,7 +40,6 @@ const ContactUS = () => {
           </Row>
         </Container>
       </section>
-      <hr />
     </>
   );
 };

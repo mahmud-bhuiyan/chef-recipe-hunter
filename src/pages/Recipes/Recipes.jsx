@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Spinner, Toast, Image, Container, Row, Col } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import RecipesCard from "../RecipesCard/RecipesCard";
+import LazyLoad from "react-lazy-load";
 
 const Recipes = () => {
   const { id } = useParams();
@@ -41,13 +42,15 @@ const Recipes = () => {
           <Container className="my-4">
             <Row>
               <Col md={4} className="mb-2">
-                <Image
-                  className="w-75 float-right"
-                  src={chef?.image}
-                  alt={chef?.name}
-                  fluid
-                  roundedCircle
-                />
+                <LazyLoad>
+                  <Image
+                    className="w-75 float-right"
+                    src={chef?.image}
+                    alt={chef?.name}
+                    fluid
+                    roundedCircle
+                  />
+                </LazyLoad>
               </Col>
 
               <Col md={8}>

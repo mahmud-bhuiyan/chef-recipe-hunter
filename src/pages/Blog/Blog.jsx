@@ -1,10 +1,75 @@
-import React from "react";
-import { Accordion, Table } from "react-bootstrap";
+import React, { useState } from "react";
+import { Accordion, Button, Table } from "react-bootstrap";
+import { PDFDownloadLink, Document, Page, Text } from "@react-pdf/renderer";
+
+const MyDocument = ({ questions }) => (
+  <Document>
+    <Page>
+      {questions.map((q) => (
+        <React.Fragment key={q.id}>
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: "bold",
+              margin: "30px 50px 0px",
+            }}
+          >
+            {q.question}
+          </Text>
+          <Text style={{ fontSize: 16, margin: "10px 50px  10px" }}>
+            {q.answer}
+          </Text>
+        </React.Fragment>
+      ))}
+    </Page>
+  </Document>
+);
 
 const Blog = () => {
+  const [questions, setQuestions] = useState([
+    {
+      id: 7,
+      question: "React page to text",
+      answer: "",
+    },
+    {
+      id: 1,
+      question: "How to validate React props using PropTypes?",
+
+      answer:
+        "The PropTypes library for React can be used to check the props supplied to a component, ensuring that the right type of data is being utilized and catching mistakes early in the development process. PropTypes can be used by importing it from the prop-types library and specifying the kinds of each prop. The isRequired method makes sure that the component receives all required props. During development mode, a warning is logged in the console if any props are missing or of a different type than what is expected. It's vital to keep in mind that PropTypes is only evaluated during development, thus data should still be validated on the server-side to avoid security concerns and guarantee the correct data is displayed to users.",
+    },
+    {
+      id: 2,
+      question: "What is a custom hook, and why will you create a custom hook?",
+      answer:
+        "A custom hook is a reusable function in the React framework that incorporates shared stateful behavior and logic. By abstracting away complex functionality, custom hooks help developers make their code easier to read and maintain. A React application can add customized hooks for a number of purposes. Because they let you abstract away complex functionality and use it across various components, custom hooks have the major advantage of being reused. By centralizing related logic and stateful behavior, custom hooks can aid in code organization and make it simple to test individual lines of code independently. Furthermore, performance can be improved with the help of custom hooks by memorizing values or lowering the frequency of re-rendering. In general, using custom hooks in a React application can help you create code that is easier to read, maintain, and utilize.",
+    },
+    {
+      id: 3,
+      question: "What is the virtual DOM?",
+      answer:
+        "The virtual DOM is a lightweight representation of the actual DOM. React uses it to optimize updates and minimize the number of DOM manipulations.",
+    },
+  ]);
+
   return (
     <div>
       <h1 className="text-center my-5">Welcome to the Blog Page!</h1>
+      <div className="text-center my-5">
+        <PDFDownloadLink
+          document={<MyDocument questions={questions} />}
+          fileName="questions-and-answers.pdf"
+        >
+          {({ loading }) =>
+            loading ? (
+              "Loading document..."
+            ) : (
+              <Button variant="primary">Download PDF</Button>
+            )
+          }
+        </PDFDownloadLink>
+      </div>
       <div className="mb-5">
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
