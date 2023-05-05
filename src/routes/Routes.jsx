@@ -8,6 +8,8 @@ import Register from "../pages/Register/Register";
 import ErrorPage from "../pages/ErrorPage";
 import AboutUs from "../pages/AboutUS/AboutUS";
 import Recipes from "../pages/Recipes/Recipes";
+import PrivateRoutes from "./PrivateRoutes";
+import Profile from "../pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +27,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/chef/:id/recipes",
-        element: <Recipes></Recipes>,
+        element: (
+          <PrivateRoutes>
+            <Recipes></Recipes>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoutes>
+            <Profile></Profile>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/about",

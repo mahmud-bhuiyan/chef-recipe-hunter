@@ -1,22 +1,13 @@
-import React, { useState } from "react";
-import {
-  GithubAuthProvider,
-  GoogleAuthProvider,
-  getAuth,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
-import app from "../../firebase/firebase.config";
-import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
-import { Button, Container } from "react-bootstrap";
-import "./Login.css";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
+import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
+import { Container } from "react-bootstrap";
+import "./Login.css";
 
 function Login() {
-  const auth = getAuth(app);
-  const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
+  const { signIn, signInWithGoogle, signInWithGithub } =
+    useContext(AuthContext);
 
   const [errorMessage, setErrorMessage] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
@@ -31,11 +22,11 @@ function Login() {
     const email = form.email.value;
     const password = form.password.value;
 
-    signInWithEmailAndPassword(auth, email, password)
+    signIn(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
-        event.target.reset();
+        form.reset();
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -50,29 +41,25 @@ function Login() {
   };
 
   const handleGoogleSignIn = () => {
-    signInWithPopup(auth, googleProvider)
+    signInWithGoogle()
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        setErrorMessage(error.message);
+        console.log(error.message);
+      });
   };
 
   const handleGithubSignIn = () => {
-    signInWithPopup(auth, githubProvider)
+    signInWithGithub()
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
       })
-      .catch((error) => console.log(error.message));
-  };
-
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("Sign-out successful.");
-      })
       .catch((error) => {
+        setErrorMessage(error.message);
         console.log(error.message);
       });
   };
@@ -83,9 +70,6 @@ function Login() {
         <div className="row justify-content-center">
           <div className="col-md-6 text-center my-5">
             <h2 className="heading-section mt-5">Login</h2>
-            <Button onClick={handleSignOut} variant="primary">
-              Logout
-            </Button>
           </div>
         </div>
         <div className="row justify-content-center">

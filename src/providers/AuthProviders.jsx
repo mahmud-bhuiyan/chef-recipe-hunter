@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
+  GithubAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
@@ -15,6 +16,7 @@ export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
 const googleAuthProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -32,13 +34,17 @@ const AuthProviders = ({ children }) => {
     return signInWithPopup(auth, googleAuthProvider);
   };
 
+  const signInWithGithub = () => {
+    return signInWithPopup(auth, githubProvider);
+  };
+
   const logout = () => {
     return signOut(auth);
   };
 
-  //observe auth state change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("haha on auth", currentUser);
       setUser(currentUser);
       setLoading(false);
     });
@@ -53,6 +59,7 @@ const AuthProviders = ({ children }) => {
     createUser,
     signIn,
     signInWithGoogle,
+    signInWithGithub,
     logout,
   };
 
