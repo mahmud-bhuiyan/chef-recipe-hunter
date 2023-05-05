@@ -27,6 +27,8 @@
 .links {
   text-decoration: none;
   padding: 5px;
+  margin: 2px;
+  border-radius: 5px;
   color: black;
   font-weight: 600;
 }

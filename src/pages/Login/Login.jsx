@@ -69,7 +69,7 @@ function Login() {
       <Container className="login-container">
         <div className="row justify-content-center">
           <div className="col-md-6 text-center my-5">
-            <h2 className="heading-section mt-5">Login</h2>
+            <h2 className="heading-section mt-5 fw-bold text-white">Login</h2>
           </div>
         </div>
         <div className="row justify-content-center">

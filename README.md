@@ -20,6 +20,10 @@ The application consists of the following components:
 
 - `Register`: Anyone can register using proper information.
 
+- `Profile`: User can see his/her information. It is a private route.
+
+- `Chef recipe page`: It is a private route. Shows a chefs recipes.
+
 - `ErrorPage`: Displays an error page.
 
 The application uses `react-router-dom` for routing and navigation between different pages.

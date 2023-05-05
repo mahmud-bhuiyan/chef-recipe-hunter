@@ -1,16 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 import { Container } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import app from "../../firebase/firebase.config";
 import "./Register.css";
-import { AuthContext } from "../../providers/AuthProviders";
 
 function Register() {
-  const { user, createUser } = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
 
-  const auth = getAuth(app);
   const [passwordShown, setPasswordShown] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState("");

@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { Nav, Navbar, Button, Image } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import "./Header.css";
 import LazyLoad from "react-lazy-load";
 import { AuthContext } from "../../../providers/AuthProviders";
+import "./Header.css";
 
 function Header() {
   const location = useLocation();
@@ -49,47 +49,54 @@ function Header() {
                 About Us
               </Link>
               {user ? (
-                <div className="d-flex">
-                  <Link className="links">{user?.email}</Link>
-                  <Link
-                    className={`links ${isActiveRoute("/profile")}`}
-                    to="/profile"
-                  >
-                    Profile
-                  </Link>
-                  <Button
-                    onClick={handleLogOut}
-                    style={{
-                      background: "none",
-                      color: "black",
-                      padding: "0px 5px",
-                      margin: "0px",
-                      border: "none",
-                      fontWeight: "500",
-                    }}
-                  >
-                    Sign Out
-                  </Button>
+                <div className="d-flex align-items-center">
+                  <div className="d-flex align-items-center">
+                    <Link
+                      className={`links d-flex ${isActiveRoute("/profile")}`}
+                      to="/profile"
+                      title={user.displayName}
+                    >
+                      <img
+                        src={user?.photoURL}
+                        alt={user?.email}
+                        style={{ maxWidth: "25px", borderRadius: "50%" }}
+                      />
+                    </Link>
+                    <Button
+                      onClick={handleLogOut}
+                      style={{
+                        background: "none",
+                        color: "black",
+                        padding: "0px 5px",
+                        margin: "0px",
+                        border: "none",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Sign Out
+                    </Button>
+                  </div>
                 </div>
               ) : (
-                <>
-                  <Link
-                    className={`links ${isActiveRoute("/login")}`}
-                    to="/login"
-                  >
-                    Login
-                  </Link>
+                <div className="d-flex align-items-center">
                   <Link
                     className={`links ${isActiveRoute("/register")}`}
                     to="/register"
                   >
                     Register
                   </Link>
+                  <Link
+                    className={`links ${isActiveRoute("/login")}`}
+                    to="/login"
+                  >
+                    Login
+                  </Link>
+
                   <FaUserCircle
-                    className="me-2"
+                    className="ms-1"
                     style={{ fontSize: "2rem" }}
                   ></FaUserCircle>
-                </>
+                </div>
               )}
             </Nav>
           </Navbar.Collapse>
