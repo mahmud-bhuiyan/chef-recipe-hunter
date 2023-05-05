@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { Container } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -7,6 +7,8 @@ import "./Register.css";
 
 function Register() {
   const { createUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const [passwordShown, setPasswordShown] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -37,6 +39,7 @@ function Register() {
           console.log(user);
           setSuccess("User created successfully");
           form.reset();
+          navigate("/");
         })
         .catch((error) => {
           console.log(error.message);

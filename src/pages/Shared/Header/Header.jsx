@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import { Nav, Navbar, Button, Image } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
 import { AuthContext } from "../../../providers/AuthProviders";
 import "./Header.css";
 
 function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const isHomePage = location.pathname === "/";
 
   const isActiveRoute = (path) => {
@@ -21,6 +23,7 @@ function Header() {
     logout()
       .then(() => {
         console.log("Sign-out successful");
+        navigate("/");
       })
       .catch((error) => {
         console.log(error.message);
