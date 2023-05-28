@@ -25,7 +25,10 @@ const Recipes = () => {
     const fetchChefData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`http://localhost:7000/chefs/${id}`);
+        const response = await fetch(
+          `https://food-cravings-server-mahmud-bhuiyan.vercel.app/chefs/${id}`
+        );
+
         const data = await response.json();
         console.log(data);
         setChef(data);
