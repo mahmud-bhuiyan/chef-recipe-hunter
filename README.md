@@ -1,9 +1,5 @@
 ## Website Name: Food Cravings
 
-## Client-side Git link: https://github.com/programming-hero-web-course-4/b7a10-chef-recipe-hunter-client-side-mahmud-bhuiyan.git
-
-## Server-side Git link: https://github.com/programming-hero-web-course-4/b7a10-chef-recipe-hunter-server-side-mahmud-bhuiyan.git
-
 ### Live website link: https://food-cravings-4b6e0.web.app/
 
 ## Features
