@@ -1,10 +1,10 @@
 ## Website Name: Food Cravings
 
 
-### Updated Live website link: https://food-cravings-174d6.web.app/
+# Updated Live website link: https://food-cravings-174d6.web.app/
 ## Live site link updated
 
-# previous link is not working (https://food-cravings-4b6e0.web.app/)
+### previous link is not working (https://food-cravings-4b6e0.web.app/)
 please try my new link
 
 ## Features
